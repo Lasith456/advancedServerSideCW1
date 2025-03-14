@@ -43,11 +43,10 @@ const login = async (req, res) => {
             return res.status(404).json({ success: false, message: "Invalid credentials" });
         }
         const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '1m' });
-        const APIKey = uuidv4().toUpperCase().replace(/-/g, "").match(/.{1,4}/g).join("-");;
         const refreshToken = jwt.sign({ email: user.email }, process.env.JWT_REFRESH_SECRET, { expiresIn: '5m' });
         res.cookie("accessToken", token, {maxAge: 60000});
         res.cookie("refreshToken", refreshToken, {httpOnly: true,secure: true, sameSite: "strict",maxAge: 300000});
-        res.status(201).json({ success: true, message: "User Login successfully", APIKey });
+        res.status(201).json({ success: true, message: "User Login successfully" });
     } catch (error) {
         console.error("Error in register:", error);
         res.status(500).json({ success: false, message: "Internal server error" });
