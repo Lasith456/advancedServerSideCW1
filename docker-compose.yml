@@ -29,7 +29,6 @@ services:
     #   - DB_HOST=mysql                                 
     #   - DB_PORT=3306                                  
     #   - DB_USER=badguy
-    #   - DB_PASSWORD=trytocatchme
     #   - DB_NAME=doctor_app
     networks:
       - doctor_network
