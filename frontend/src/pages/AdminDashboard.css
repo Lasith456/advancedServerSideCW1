@@ -103,14 +103,14 @@
   
   /* API Key */
   .api-key {
-    color: #ff0000; /* Bright red text */
-  background: #ffe6e6; /* Light red highlight */
-  padding: 10px;
-  font-weight: bold;
-  border-radius: 5px;
-  border: 2px solid #ff0000; /* Red border */
-  display: inline-block;
-  margin-top: 10px;
+    color: #0011ff; /* Bright red text */
+    background: #f9ffe6; /* Light red highlight */
+    padding: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid #00ff15; /* Red border */
+    display: inline-block;
+    margin-top: 10px;
   }
   
   /* Country List */
