@@ -6,7 +6,6 @@ dotenv.config();
 const IsUser = async (req, res, next) => {
     try {
         const accessToken = req.cookies.accessToken;
-
         if (!accessToken) {
             const { renewed, email } = await renewToken(req, res);
             if (renewed) {
