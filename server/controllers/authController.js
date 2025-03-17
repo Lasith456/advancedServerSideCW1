@@ -30,7 +30,6 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email,password } = req.body;
-        console.log(email)
         if (!email || !password) {
             return res.status(400).json({ success: false, message: "All fields are required" });
         }
@@ -43,9 +42,9 @@ const login = async (req, res) => {
             return res.status(404).json({ success: false, message: "Invalid credentials" });
         }
         const token = jwt.sign({ email: user.email }, process.env.JWT_SECRET, { expiresIn: '1m' });
-        const refreshToken = jwt.sign({ email: user.email }, process.env.JWT_REFRESH_SECRET, { expiresIn: '5m' });
+        const refreshToken = jwt.sign({ email: user.email }, process.env.JWT_REFRESH_SECRET, { expiresIn: '60m' });
         res.cookie("accessToken", token, {maxAge: 60000});
-        res.cookie("refreshToken", refreshToken, {httpOnly: true,secure: true, sameSite: "strict",maxAge: 300000});
+        res.cookie("refreshToken", refreshToken, {httpOnly: true,secure: true, sameSite: "strict",maxAge: 360000});
         res.status(201).json({ success: true, message: "User Login successfully" });
     } catch (error) {
         console.error("Error in register:", error);
