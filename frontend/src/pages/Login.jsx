@@ -24,7 +24,11 @@ export default function Login() {
         }
       );
       alert(response.data.message);
-      navigate("/dashboard");
+      if(response.data.role==="admin"){
+        navigate("/admin");
+      }else{
+        navigate("/user-dashboard");
+      }
     } catch (err) {
       setError(err.response?.data?.message || "Login failed");
     }

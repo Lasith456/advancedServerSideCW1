@@ -14,7 +14,7 @@ class UserDAO {
             driver: sqlite3.Database
         });
 
-        await this.db.exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,email TEXT UNIQUE NOT NULL,password TEXT NOT NULL)');
+        await this.db.exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,email TEXT UNIQUE NOT NULL,password TEXT NOT NULL,userRole INTEGER DEFAULT 0)');
         await this.db.exec('CREATE TABLE IF NOT EXISTS api_keys (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,api_key TEXT NOT NULL,expires_at DATETIME NOT NULL,FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE)');
 
     }

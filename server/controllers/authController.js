@@ -45,7 +45,12 @@ const login = async (req, res) => {
         const refreshToken = jwt.sign({ email: user.email }, process.env.JWT_REFRESH_SECRET, { expiresIn: '60m' });
         res.cookie("accessToken", token, {maxAge: 60000});
         res.cookie("refreshToken", refreshToken, {httpOnly: true,secure: true, sameSite: "strict",maxAge: 360000});
-        res.status(201).json({ success: true, message: "User Login successfully" });
+        if(user.userRole==1){
+            res.status(201).json({ success: true, message: "User Login successfully",role:"admin" });
+
+        }else{
+            res.status(201).json({ success: true, message: "User Login successfully",role:"user" });
+        }
     } catch (error) {
         console.error("Error in register:", error);
         res.status(500).json({ success: false, message: "Internal server error" });

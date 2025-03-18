@@ -17,7 +17,8 @@ const createTable = async () => {
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT NOT NULL UNIQUE,
             name TEXT NOT NULL,
-            password TEXT NOT NULL
+            password TEXT NOT NULL,
+            userRole INTEGER DEFAULT 0
         );
     `;
     const apiKeysTableSQL = `
