@@ -3,7 +3,7 @@ import userDao from '../dao/userDao.js';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken'
 import { v4 as uuidv4 } from "uuid";
-
+import {genarateHash} from "../utilities/bcryptjsUtil.js";
 dotenv.config();
 const register = async (req, res) => {
     try {
@@ -17,7 +17,8 @@ const register = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ success: false, message: "Email already registered" });
         }
-        const hashedPassword = await bcryptjs.hash(password, 10);
+        
+        const hashedPassword = await genarateHash(password);
         
         const userId = await userDao.createUser(name, email, hashedPassword);
 
@@ -71,7 +72,7 @@ const genarateApiKey = async (req, res) => {
             return res.status(404).json({ success: false, message: "Invalid credentials" });
         }
         const APIKey = uuidv4().toUpperCase().replace(/-/g, "").match(/.{1,4}/g).join("-");
-        const hashedAPIKey = await bcryptjs.hash(APIKey, 10);
+        const hashedAPIKey = await genarateHash(APIKey);
         const expiresAt = new Date();
         expiresAt.setFullYear(expiresAt.getFullYear() + 1);
         const deleteUser= await userDao.deleteLastApiKey(user.id);

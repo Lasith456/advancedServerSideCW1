@@ -1,3 +1,8 @@
+#node modules
 node_modules
+#dot env file secured data
 .env
+#cache files
 .DS_Store
+#database
+/config/database.db
