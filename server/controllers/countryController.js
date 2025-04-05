@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const getAllCountry = async (req, res) => {
     try {
-        const response = await fetch("https://restcountries.com/v3.1/name/india");
+        const response = await fetch("https://restcountries.com/v3.1/all");
         if (!response.ok) {
             throw new Error(`Failed to fetch data: ${response.statusText}`);
         }
