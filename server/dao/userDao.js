@@ -15,7 +15,7 @@ class UserDAO {
         });
 
         await this.db.exec('CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL,email TEXT UNIQUE NOT NULL,password TEXT NOT NULL,userRole INTEGER DEFAULT 0)');
-        await this.db.exec('CREATE TABLE IF NOT EXISTS api_keys (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,api_key TEXT NOT NULL,expires_at DATETIME NOT NULL,FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE)');
+        await this.db.exec('CREATE TABLE IF NOT EXISTS api_keys (id INTEGER PRIMARY KEY AUTOINCREMENT,user_id INTEGER NOT NULL,api_key TEXT NOT NULL,expires_at DATETIME NOT NULL,last_used DATETIME,usage_count INTEGER DEFAULT 0,FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE);');
 
     }
 
@@ -48,6 +48,60 @@ class UserDAO {
             [user_id]
         );
     }
+    async updateApiKeyUsage(user_id) {
+        const query = `
+          UPDATE api_keys
+          SET usage_count = COALESCE(usage_count, 0) + 1,
+              last_used = CURRENT_TIMESTAMP
+          WHERE user_id = ?
+        `;
+        return await this.db.run(query, [user_id]);
+      }
+    
+      async getApiKeyStatsByUserId(user_id) {
+        const query = `
+          SELECT 
+            api_key,
+            usage_count,
+            last_used,
+            expires_at
+          FROM api_keys
+          WHERE user_id = ?
+          ORDER BY id DESC
+        `;
+        return await this.db.all(query, [user_id]);
+      }
+    
+      async getAllApiKeyStats() {
+        const query = `
+          SELECT 
+            users.name AS username,
+            users.email,
+            api_keys.api_key,
+            api_keys.expires_at,
+            api_keys.last_used,
+            api_keys.usage_count
+          FROM api_keys
+          INNER JOIN users ON api_keys.user_id = users.id
+          ORDER BY api_keys.last_used DESC
+        `;
+        return await this.db.all(query);
+      }
+      async getAllUsers() {
+        const query = `SELECT id, name, email, userRole FROM users ORDER BY name ASC`;
+        return await this.db.all(query);
+      }
+      
+      async updateUserRole(userId, role) {
+        const query = `UPDATE users SET userRole = ? WHERE id = ?`;
+        return await this.db.run(query, [role, userId]);
+      }
+      
+      async deleteUserById(userId) {
+        const query = `DELETE FROM users WHERE id = ?`;
+        return await this.db.run(query, [userId]);
+      }
+      
     
 }
 

@@ -27,8 +27,11 @@ const createTable = async () => {
             user_id INTEGER NOT NULL,
             api_key TEXT NOT NULL,
             expires_at DATETIME NOT NULL,
+            last_used DATETIME,
+            usage_count INTEGER DEFAULT 0,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
         );
+
     `;
     db.run(sql, (err) => {
         if (err) {

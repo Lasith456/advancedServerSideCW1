@@ -5,7 +5,8 @@ const apiKeyValidation = async (req, res, next) => {
     try {
 
             const email = req.email;
-            const apikey=req.body.apikey;
+            const apikey = req.headers['x-api-key'];
+
             const user = await userDao.findUserByEmail(email);
             if(!user){
                 return  res.status(400).json({success:false, message:"User Not Fpund!"});
@@ -22,6 +23,7 @@ const apiKeyValidation = async (req, res, next) => {
             if (expiryTime < currentTime) {
                 return res.status(400).json({ success: false, message: "Your API Key is expired!" });
             }
+            await userDao.updateApiKeyUsage(user.id);
             next();
         } catch (error) {
             console.error("Server Error:", error.message);
