@@ -1,4 +1,4 @@
-```md
+
 # 🌐 CountryAPI Fetche
 
 This project is a full-stack web application built with:
@@ -30,8 +30,8 @@ project-root/
 ### 🔁 Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/Lasith456/advancedServerSideCW1.git
+cd advancedServerSideCW1
 ```
 
 ---
