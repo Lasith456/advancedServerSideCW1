@@ -113,12 +113,12 @@ docker run -p 3001:3001 node-backend
 
 ## ⚙️ Environment Variables
 
-Make sure to configure your `.env` files as needed in both `/frontend` and `/backend` directories (if applicable).
-
-Example for backend `.env`:
+Your backend uses environment variables defined in a .env file. An example file is provided as .env.example.
+## 🪄 Setup Instructions
 ```
-PORT=3001
-JWT_SECRET=your_secret_key
+cd backend
+cp .env.example .env
+
 ```
 
 ---
@@ -128,8 +128,7 @@ JWT_SECRET=your_secret_key
 | Location   | Script         | Description                    |
 |------------|----------------|--------------------------------|
 | my-project | `npm start`    | Start React app (CRA)          |
-| my-project | `npm run dev`  | Start dev mode (Vite)          |
-| frontend   | `npm run build`| Build for production           |
+| my-project | `npm run build`| Build for production           |
 | backend    | `npm run start`| Start Node.js server           |
 | backend    | `npm run dev`  | Start server with nodemon      |
 
@@ -138,7 +137,7 @@ JWT_SECRET=your_secret_key
 
 ## 👨‍💻 Author
 
-- **Your Name**  
+- **Lasith Chamika Viduranga**  
 - GitHub: [@LasithViduranga](https://github.com/Lasith456)
 
 ---
