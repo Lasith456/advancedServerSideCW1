@@ -21,7 +21,6 @@ const DashboardLayout = () => {
             <Link to="generate-key" className="hover:text-yellow-300 block">Generate API Key</Link>
             <Link to="user-management" className="hover:text-yellow-300 block">User Management</Link>
             <Link to="api-usage" className="hover:text-yellow-300 block">API Usage Stats</Link>
-            <Link to="region-countries" className="hover:text-yellow-300 block">By Region</Link>
           </nav>
         </div>
 

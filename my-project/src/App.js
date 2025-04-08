@@ -46,7 +46,6 @@ function App() {
           <Route path="generate-key" element={<GenerateApiKey />} />
           <Route path="user-management" element={<UserManagement />} />
           <Route path="api-usage" element={<ApiUsageStatus />} />
-          <Route path="region-countries" element={<RegionCountries />} />
         </Route>
       </Routes>
     </Router>
