@@ -10,7 +10,6 @@ import SingleCountry from './pages/admin/SingleCountry';
 import GenerateApiKey from './pages/admin/GenerateApiKey';
 import UserManagement from './pages/admin/UserManagement';
 import ApiUsageStatus from './pages/admin/ApiUsageStatus'; 
-import RegionCountries from './pages/admin/RegionCountries';
 
 
 function App() {
