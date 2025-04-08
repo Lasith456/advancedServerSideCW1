@@ -1,8 +1,7 @@
-// utils/auth.js
 import Cookies from 'js-cookie';
 
 export function getToken() {
-  return Cookies.get('accessToken');
+  return Cookies.get('refreshToken');
 }
 
 export function getUserRole() {

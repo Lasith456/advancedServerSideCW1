@@ -38,9 +38,9 @@ const login = async (req, res) => {
             return res.status(404).json({ success: false, message: "Invalid credentials" });
         }
         const token = jwt.sign({ email: user.email,role: user.userRole }, process.env.JWT_SECRET, { expiresIn: '1m' });
-        const refreshToken = jwt.sign({ email: user.email }, process.env.JWT_REFRESH_SECRET, { expiresIn: '60m' });
+        const refreshToken = jwt.sign({ email: user.email ,role: user.userRole }, process.env.JWT_REFRESH_SECRET, { expiresIn: '60m' });
         res.cookie("accessToken", token, {maxAge: 60000});
-        res.cookie("refreshToken", refreshToken, {httpOnly: true,secure: true, sameSite: "strict",maxAge: 3600000});
+        res.cookie("refreshToken", refreshToken, {httpOnly: false,secure: true, sameSite: "strict",maxAge: 3600000});
         if(user.userRole==1){
             res.status(200).json({ success: true, message: "User Login successfully",role:"admin" });
 

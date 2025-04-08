@@ -19,7 +19,6 @@ const apiKeyValidation = async (req, res, next) => {
             } 
             const currentTime = Date.now(); 
             const expiryTime = new Date(apiUser.expiresAt).getTime(); 
-    
             if (expiryTime < currentTime) {
                 return res.status(400).json({ success: false, message: "Your API Key is expired!" });
             }
