@@ -5,7 +5,14 @@ import Table from '../../components/Table';
 const UserApiUsageStatus = () => {
   const [stats, setStats] = useState([]);
   const [error, setError] = useState('');
-
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000);
+      return () => clearTimeout(timer); 
+    }
+  }, [error]);
   useEffect(() => {
     const fetchStats = async () => {
       try {

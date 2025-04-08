@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 
 const GenerateApiKey = () => {
@@ -6,7 +6,14 @@ const GenerateApiKey = () => {
   const [password, setPassword] = useState('');
   const [apiKey, setApiKey] = useState('');
   const [error, setError] = useState('');
-
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000);
+      return () => clearTimeout(timer); 
+    }
+  }, [error]);
   const generateKey = async () => {
     try {
       const response = await axios.post(

@@ -11,7 +11,6 @@ const UserDashboard = () => {
 
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
       <aside className="w-64 bg-blue-800 text-white p-4 flex flex-col justify-between">
         <div>
           <h2 className="text-2xl font-bold mb-6">User Panel</h2>
@@ -28,7 +27,6 @@ const UserDashboard = () => {
         </button>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 p-6 bg-gray-100">
         <Outlet />
       </main>

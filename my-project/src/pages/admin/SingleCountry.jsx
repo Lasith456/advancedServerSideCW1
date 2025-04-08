@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 import Table from '../../components/Table';
 
@@ -20,7 +20,14 @@ const SingleCountry = () => {
       flag: c.flag || c.flags?.png || "🏳️",
     };
   };
-
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000);
+      return () => clearTimeout(timer); 
+    }
+  }, [error]);
   const fetchSingleCountry = async () => {
     try {
       const response = await axios.post(

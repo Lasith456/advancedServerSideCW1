@@ -17,7 +17,14 @@ const UserManagement = () => {
       console.error(err);
     }
   };
-
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000);
+      return () => clearTimeout(timer); 
+    }
+  }, [error]);
   const deleteUser = async (id) => {
     try {
       await axios.delete(`http://localhost:3001/api/user/${id}`, {

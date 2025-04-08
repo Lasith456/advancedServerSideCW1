@@ -5,4 +5,5 @@ node_modules
 #cache files
 .DS_Store
 #database
-/config/database.db
+
+config/database.db

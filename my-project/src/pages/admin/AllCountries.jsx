@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import axios from 'axios';
 import Table from '../../components/Table';
 
@@ -6,7 +6,14 @@ const AllCountries = () => {
   const [countries, setCountries] = useState([]);
   const [apiKey, setApiKey] = useState('');
   const [error, setError] = useState('');
-
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000);
+      return () => clearTimeout(timer); // Cleanup timeout on component unmount or when error changes
+    }
+  }, [error]);
   const formatCountries = (rawData) => {
     return rawData.map((c) => {
       const currencyNames = c.currencies ? Object.values(c.currencies).map(cur => cur.name).join(", ") : "N/A";
