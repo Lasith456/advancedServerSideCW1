@@ -1,9 +1,9 @@
 
-# 🌐 CountryAPI Fetche
+# CountryAPI Fetche
 
 This project is a full-stack web application built with:
-- ⚛️ **React.js** for the frontend
-- 🚀 **Node.js/Express** for the backend
+- **React.js** for the frontend
+- **Node.js/Express** for the backend
 
 It supports running via Docker (`docker-compose`) as well as manually for development purposes.
 
@@ -25,9 +25,9 @@ project-root/
 
 ---
 
-## 🚀 1. Getting Started
+##  1. Getting Started
 
-### 🔁 Clone the Repository
+###  Clone the Repository
 
 ```bash
 git clone https://github.com/Lasith456/advancedServerSideCW1.git
@@ -36,9 +36,9 @@ cd advancedServerSideCW1
 
 ---
 
-## 🐳 2. Run with Docker (Recommended)
+##  2. Run with Docker (Recommended)
 
-### ▶️ Using `docker-compose` (runs both frontend & backend)
+###  Using `docker-compose` (runs both frontend & backend)
 
 ```bash
 docker-compose up --build
@@ -51,7 +51,7 @@ docker-compose up --build
 
 ## 🔧 3. Run Without Docker (Manual Development Mode)
 
-### ▶️ Frontend (React)
+### Frontend (React)
 
 ```bash
 cd my-project
@@ -66,7 +66,7 @@ npm run build
 
 ---
 
-### ▶️ Backend (Node.js)
+### Backend (Node.js)
 
 ```bash
 cd server
@@ -83,9 +83,9 @@ npm run start
 
 ---
 
-## 🐳 4. Run Docker Containers Separately (Manual)
+## 4. Run Docker Containers Separately (Manual)
 
-### 🖼️ Frontend (React)
+### Frontend (React)
 
 ```bash
 cd my-project
@@ -97,7 +97,7 @@ docker build -t react-dev .
 docker run -p 3000:3000 react-dev
 ```
 
-### 🖥️ Backend (Node.js)
+### Backend (Node.js)
 
 ```bash
 cd server
@@ -111,10 +111,10 @@ docker run -p 3001:3001 node-backend
 
 ---
 
-## ⚙️ Environment Variables
+## Environment Variables
 
 Your backend uses environment variables defined in a .env file. An example file is provided as .env.example.
-## 🪄 Setup Instructions
+### Setup Instructions
 ```
 cd backend
 cp .env.example .env
@@ -123,7 +123,7 @@ cp .env.example .env
 
 ---
 
-## 🧾 Scripts Reference
+## Scripts Reference
 
 | Location   | Script         | Description                    |
 |------------|----------------|--------------------------------|
@@ -142,4 +142,3 @@ cp .env.example .env
 
 ---
 
-```
